@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'config.php';
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'connectToDB.model.php';
 
 ob_start();
@@ -21,8 +22,8 @@ if (!isset($_GET['p'])) {
         case 'history.user':
             include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'history.user.view.php';
             break;
-        case 'contact.user':
-            include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'contact.user.view.php';
+        case 'help.user':
+            include dirname(__DIR__) . DIRECTORY_SEPARATOR .'view' . DIRECTORY_SEPARATOR . 'user' . DIRECTORY_SEPARATOR . 'help.user.view.php';
             break;
         case 'home.admin':
             include dirname(__DIR__) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'admin' . DIRECTORY_SEPARATOR . 'home.admin.view.php';
