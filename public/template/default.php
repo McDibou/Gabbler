@@ -21,5 +21,7 @@
     </ul>
 </header>
     <?= $content ?>
+
+<script src="./js/ad.room.user.js"></script>
 </body>
 </html>

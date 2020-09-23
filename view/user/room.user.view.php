@@ -12,15 +12,14 @@ $room = ad_readRoom($db)
 <div>
 
     <?php while ($content = mysqli_fetch_assoc($room)) { ?>
-    <a href
-       onclick="event.preventDefault(); location+='&key_room=<?= $content['id_room'] ?>';"><?= $content['name_room'] ?></a>
-
+        <a href
+           onclick="ad_roomUser(<?= $content['id_room'] ?>)"><?= $content['name_room'] ?></a>
     <?php } ?>
 </div>
 
 <div>
 
-    <?php if (isset($_GET['key_room'])) { ?>
+    <?php if (!empty($_GET['key_room']) && ctype_digit($_GET['key_room'])) { ?>
 
         <?php while ($content = mysqli_fetch_assoc($message)) { ?>
 
