@@ -22,6 +22,9 @@
 </header>
     <?= $content ?>
 
+
+<script src="./jquery/jquery-3.5.1.js"></script>
 <script src="./js/ad.room.user.js"></script>
+
 </body>
 </html>

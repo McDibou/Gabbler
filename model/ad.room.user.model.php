@@ -32,6 +32,6 @@ function ad_insertMessage($db, $content_message, $room_id, $user_id = 5)
 
 function ad_readRoom ($db) {
     return mysqli_query($db, "
-    SELECT * FROM `room`
+    SELECT * FROM `room` WHERE public_room = 1
     ");
 }

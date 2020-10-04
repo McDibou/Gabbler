@@ -1,24 +1,19 @@
 <?php
 
-require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'model' . DIRECTORY_SEPARATOR . 'ad.room.user.model.php';
 require_once dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'controller' . DIRECTORY_SEPARATOR . 'ad.room.user.controller.php';
 
-$getRoom = isset($_GET['key_room']) ? $_GET['key_room'] : null;
-$message = ad_readMessage($db, $getRoom);
-
-$room = ad_readRoom($db)
-
 ?>
-<div>
 
+<div>
     <?php while ($content = mysqli_fetch_assoc($room)) { ?>
         <a href
            onclick="ad_roomUser(<?= $content['id_room'] ?>)"><?= $content['name_room'] ?></a>
     <?php } ?>
 </div>
 
-<div>
+<div id="tchat"></div>
 
+<div>
     <?php if (!empty($_GET['key_room']) && ctype_digit($_GET['key_room'])) { ?>
 
         <?php while ($content = mysqli_fetch_assoc($message)) { ?>
