@@ -11,7 +11,7 @@
 
 <div id="tchat"></div>
 
-<div>
+<div id="test">
     <form action="insert.php" method="post">
         <input type="text" id="content_message" required>
         <input type="button" value="post" id="post">
@@ -22,8 +22,9 @@
 
 <script>
 
-    let div = $('#tchat');
+    let interval = setInterval(dynamicTchat, 2000)
 
+    let div = $('#tchat');
 
     $.post('show.php')
 
@@ -46,8 +47,6 @@
                 let idShow = $('#tchat #id_message').last().val();
                 let lastId = message[message.length - 1].id_message;
 
-                let nbrIdShow = $('#tchat #id_message').length;
-
                 if (idShow === undefined) {
 
                     readMessage(message)
@@ -64,19 +63,6 @@
 
                         })
 
-                } else if (nbrIdShow !== message.length) {
-
-                    let getShowId = [];
-                    $.each($('#tchat'), function(key, value) {
-                        console.log(key + value)
-                    })
-
-                    // $.post('show.php', {getShowId : getShowId})
-                    //
-                    //     .done(function(data)) {
-                    //
-                    // }
-
                 } else {
 
                     return true
@@ -87,15 +73,12 @@
 
     }
 
-    let interval = setInterval(dynamicTchat, 500)
-
-
     function readMessage(message) {
 
         let html = message.map(function (messages) {
 
             return `
-                    <div style="background-color: azure; padding: 20px;margin: 5px;">
+                    <div style="background-color: #f0ffff; padding: 20px;margin: 5px;">
                         <input type="hidden" id='id_message' value='${messages.id_message}'/>
                         <p>${messages.nickname_user}</p>
                         <p>${messages.content_message}</p>
@@ -112,16 +95,25 @@
 
     $('#post').click(function () {
 
+        let content_message = $('#content_message')
+
         $.post('insert.php', {
-            content_message: $('#content_message').val()
+            content_message: content_message.val()
         })
 
+            .done(function (data) {
 
+                let message = JSON.parse(data)
 
-        $('#content_message').val('');
-        $('#content_message').focus();
+                readMessage(message)
+
+            })
+
+        content_message.val('');
+        content_message.focus();
 
     });
+
 
 
 </script>
