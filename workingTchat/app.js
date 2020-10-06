@@ -15,25 +15,7 @@ $.post('controller.php', {task: 'show'})
 
     })
 
-$('#post').click(function () {
 
-    $.post('controller.php', {
-        task: 'insert',
-        content_message: content_message.val()
-    })
-
-        .done(function (data) {
-
-            let message = JSON.parse(data)
-
-            readMessage(message)
-
-
-        })
-    content_message.val('');
-    content_message.focus();
-
-})
 
 function dynamicTchat() {
 
@@ -85,3 +67,24 @@ function readMessage(message) {
 }
 
 
+$('#post').click(function () {
+
+
+
+    $.post('controller.php', {
+        task: 'insert',
+        content_message: content_message.val()
+    })
+
+        .done(function (data) {
+
+            let message = JSON.parse(data)
+
+            readMessage(message)
+
+        })
+
+    content_message.val('');
+    content_message.focus();
+
+})

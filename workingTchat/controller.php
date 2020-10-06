@@ -1,7 +1,8 @@
 <?php
-
 include "config.php";
-
+include "model.php";
+session_start();
+var_dump($_SESSION);
 
 if (isset($_POST['task'])) {
     $task = $_POST['task'];
@@ -9,11 +10,10 @@ if (isset($_POST['task'])) {
 
 
 if ($task === 'show') {
+    
     $getId = (!empty($_POST['getId'])) ? $_POST['getId'] : 0;
 
-    $sql = "SELECT * FROM `message` JOIN `user` ON `id_user` = `fkey_user_id` WHERE id_message > '$getId' ORDER BY `date_message` ASC";
-    $rq = mysqli_query($db, $sql);
-    $result = mysqli_fetch_all($rq, MYSQLI_ASSOC);
+    $result = showMessage($getId , $db);
 
     echo $json = json_encode($result);
 }
@@ -25,13 +25,7 @@ if ($task === 'insert') {
 
         $text = $_POST['content_message'];
 
-        mysqli_query($db, "INSERT INTO `message` (`content_message`, `archived_message`, `fkey_user_id`, `fkey_room_id`) VALUES ('$text', 0, 5, 1)");
-
-        $id = mysqli_insert_id($db);
-
-        $sql = "SELECT * FROM `message` JOIN `user` ON `id_user` = `fkey_user_id` WHERE `id_message` = '$id'";
-        $rq = mysqli_query($db, $sql);
-        $result = mysqli_fetch_all($rq, MYSQLI_ASSOC);
+        $result = insertMessage($text, $db);
 
         echo $json = json_encode($result);
 
@@ -41,8 +35,6 @@ if ($task === 'insert') {
 
 if ($task === 'lastId') {
 
-    $sql = "SELECT `id_message` FROM `message`ORDER BY `date_message` DESC LIMIT 1";
-    $rq = mysqli_query($db, $sql);
-    echo $result = mysqli_fetch_assoc($rq)['id_message'];
+    echo $result = lastIdMessage($db);
 
 }
