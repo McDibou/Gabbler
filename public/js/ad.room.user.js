@@ -17,7 +17,6 @@ $.post('./ajax.room.controller.php', {task: 'show'})
     })
 
 
-
 function dynamicTchat() {
 
     $.post('./ajax.room.controller.php', {task: 'lastId'})
@@ -54,7 +53,7 @@ function readMessage(message) {
 
         return `
                     <div style="background-color: #f0ffff; padding: 20px;margin: 5px;">
-                        <input type="hidden" id='id_message' value='${messages.id_message}'/>
+                        <input type="hidden" id='id_message' value='${messages.id_message}'/> <!-- IMPORTANT -->
                         <p>${messages.nickname_user}</p>
                         <p>${messages.content_message}</p>
                         <em>${messages.date_message}</em>

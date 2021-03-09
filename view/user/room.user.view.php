@@ -1,6 +1,3 @@
-<pre>
-<?php print_r($_SESSION) ?>
-</pre>
 <div id="tchat"></div>
 
 <div>

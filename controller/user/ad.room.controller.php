@@ -20,8 +20,7 @@ function insertControllerMessage($db, $session)
     if (isset($_POST['content_message'])) {
 
         $user = $session['user']['id_user'];
-        // $room = $_GET['room'];
-        $room = 1;
+        $room = 1; // $room = $_GET['room'];
         $text = htmlspecialchars(trim($_POST['content_message']));
 
         if (ctype_digit($user) && !empty($text)) {
